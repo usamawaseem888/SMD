@@ -1,1 +1,333 @@
+//q1
+
+abstract class Cricketer{
+   String name;
+   String nationality;
+   int age;
+   
+   public Cricketer(String name,String nationality,int age){
+   this.name = name;
+   this.nationality = nationality;
+   this.age=age;
+   }
+   void print(){
+   System.out.println("Name: "+ name);
+   System.out.println("Nationality: "+ nationality);
+   System.out.println("Age: "+age);
+   
+   }
+   
+}
+interface BowlerClass{
+void print();
+
+}
+class Bowler extends Cricketer implements BowlerClass{
+    int wickets;
+    int brank;
+    public Bowler(String name,String nationality,int age,int brank, int wickets){
+    super(name,nationality,age);
+        this.brank=brank;
+        this.wickets=wickets;
+    }
+    @Override
+    public void print(){
+    System.out.println("Bowling Stats: ");
+        super.print();
+        System.out.println("Bowling rank: "+brank);
+        System.out.println("wickets: "+wickets);
+        System.out.print("\n");
+    }
+}
+interface BatsmanClass{
+void print();
+
+}
+class Batsman extends Cricketer implements BatsmanClass{
+    int score;
+    int brank;
+    public Batsman(String name,String nationality,int age,int score, int brank){
+    super(name,nationality,age);
+        this.score=score;
+        this.brank=brank;
+    }
+    @Override
+    public void print(){
+    System.out.println("Batting Stats: ");
+        super.print();
+        System.out.println("Score: "+score);
+         System.out.println("Batting Rank: "+brank);
+         System.out.print("\n");
+    }
+}
+class Rounder implements BowlerClass,BatsmanClass{
+int rank;
+private Batsman b;
+private Bowler c;
+
+public Rounder(String name,String nationality,int bat_rank,int score,int bowl_rank,int wickets,int all_rank,int age){
+b=new Batsman(name,nationality,age,score,bat_rank);
+c=new Bowler(name,nationality,age,bowl_rank,wickets);
+this.rank=all_rank;
+}
+@Override
+public void print(){
+System.out.println("All-rounder class: ");
+System.out.print("All Rounder ranking: "+rank);
+System.out.print("\n");
+        b.print();
+        c.print();
+       
+        
+    }
+}
+
+
+public class Main {
+    public static void main(String[] args) {
+    Batsman b=new Batsman("Babar Azam","Pakistani",28,4809,1);
+    b.print();
+    Bowler bb=new Bowler("Adam Zampa","Australian",31,7,127);
+    bb.print();
+      Rounder r=new Rounder("Shadab Khan","Pakistani",97,734,20,83,11,24);
+       r.print();
+    }
+}
+
+
+///q2
+
+abstract class Person{
+int adhar;
+String name;
+String address;
+int phone;
+String profession;
+
+public Person(int adhar,String name,String address,int phone,String profession){
+this.adhar=adhar;
+this.name=name;
+this.address=address;
+this.phone=phone;
+this.profession=profession;
+
+}
+public String register(String uid){
+return uid;
+
+}
+public String perform(String duty){
+return duty;
+}
+public String include(String service){
+return service;
+}
+public String like(String item){
+return item;
+}
+
+public void print(){
+System.out.println("Name: "+name );
+System.out.println("Address: "+address);
+System.out.println("Phone NO: "+phone);
+System.out.println("Adhar: "+adhar);
+System.out.println("Profession: "+profession);
+
+}
+
+
+
+}
+class Student extends Person{
+String student_id;
+String major;
+String college;
+int year;
+int grade;
+
+public Student(int adhar,String name,String address,int phone,String profession,String student_id,String major,String college,int year,int grade){
+super(adhar,name,address,phone,profession);
+this.student_id=student_id;
+this.major=major;
+this.college=college;
+this.year=year;
+this.grade=grade;
+}
+public String register(String course){
+return course;
+}
+public int getGrade(String course){
+return this.grade;
+
+}
+public String Attend(String Class){
+return Class;
+}
+public void learn(){
+System.out.println("Lesson Learned");
+
+}
+public void print(){
+System.out.println("Student Class:");
+  super.print();
+  System.out.println("student_id: "+student_id );
+  System.out.println("Major: "+ major );
+  System.out.println("college: "+college );
+  System.out.println("year: "+year );
+  System.out.println("grade: "+grade );
+ 
+}
+
+
+
+}
+
+
+class Pg_student extends Student{
+String RollNo;
+String special;
+
+public Pg_student(int adhar,String name,String address,int phone,String profession,String student_id,String major,String college,int year,int grade,String Roll,String special){
+super(adhar,name,address,phone,profession,student_id,major,college,year,grade);
+this.RollNo=Roll;
+this.special=special;
+}
+public void print(){
+System.out.println("Pg_student Class:");
+  super.print();
+  System.out.println("RollNo: "+RollNo );
+  System.out.println("Special: "+ special);
+  
+}
+
+public void submit_thesis(){
+System.out.println("Thesis Submitted");
+}
+
+
+}
+// class Staff------------------------------------------------------
+class Staff extends Person{
+String emp_id;
+String emp_role;
+String emp_dept;
+String emp_salary;
+int emp_experience;
+
+public Staff(int adhar,String name,String address,int phone,String profession,String emp_id,String emp_role,String emp_dept,String emp_salary,int emp_experience){
+super(adhar,name,address,phone,profession);
+this.emp_id=emp_id;
+this.emp_role=emp_role;
+this.emp_dept=emp_dept;
+this.emp_salary=emp_salary;
+this.emp_experience=emp_experience;
+}
+public String attend(String duty){
+return duty;
+}
+public String getPromotion(){
+return this.emp_role;
+}
+public String getSalary(){
+return this.emp_salary;
+}
+public void print(){
+System.out.println("Staff Class: ");
+super.print();
+System.out.println("Emp id: "+emp_id);
+System.out.println("Employee Role: "+emp_role);
+System.out.println("employee Department: "+emp_dept);
+System.out.println("Employee Salary: "+emp_salary);
+System.out.println("Employee Experience: "+emp_experience);
+
+
+}
+}
+// Class Faculty---------------------------------------------------
+class Faculty extends Staff{
+String F_special;
+String section;
+String qualification;
+int no_students;
+
+public Faculty(int adhar,String name,String address,int phone,String profession,String emp_id,String emp_role,String emp_dept,String emp_salary,int emp_experience,String F_special,String section,String qualification,int no_students){
+super(adhar,name,address,phone,profession,emp_id,emp_role,emp_dept,emp_salary,emp_experience);
+
+this.F_special=F_special;
+this.section=section;
+this.qualification=qualification;
+this.no_students=no_students;
+
+}
+
+public String teach(String course){
+return course;
+}
+public String assess(String student_grade){
+return student_grade;
+}
+
+public void print(){
+System.out.println("Faculty CLass:");
+super.print();
+System.out.println("Faculty Specialization: "+ F_special);
+System.out.println("Section: "+ section);
+System.out.println("Qualifiaction: "+qualification);
+System.out.println("No. of Students: "+no_students);
+}
+
+}
+// class Technician------------------------------------------------
+class Technician extends Staff{
+String tech_type;
+
+public Technician(int adhar,String name,String address,int phone,String profession,String emp_id,String emp_role,String emp_dept,String emp_salary,int emp_experience,String tech_type){
+super(adhar,name,address,phone,profession,emp_id,emp_role,emp_dept,emp_salary,emp_experience);
+this.tech_type=tech_type;
+}
+
+public String maintain(String lab){
+return lab;
+}
+
+public String install(String system){
+return system;
+}
+
+public void print(){
+System.out.println("Technician Class: ");
+super.print();
+System.out.print("Tech Type: "+ tech_type);
+
+}
+
+
+}
+
+
+public class Main {
+  public static void main(String[] args) {
+   Student s=new Student(1,"Usama","329 samanabad",3354777,"Student","3","cs","PGC",2012,21);
+   s.print();
+   System.out.println("\n" );
+   Pg_student p=new Pg_student(2,"hasham","19A-Sabzazar",332324,"Student","33","CS","Kips",2013,21,"19L-1239","AI");
+   p.print();
+    System.out.println("\n" );
+    
+    Staff f=new Staff(3,"shamir","52-B Fasial Town",328723,"Student","21","Designer","Testing","45,000",1);
+    f.print();
+     System.out.println("\n" );
+    
+    Faculty ff=new Faculty(4,"Ali","256s Pak Block,Allama Iqbal Town",324882,"Teacher","56","Instructor","CS","55,000",5,"Data Structur","F","BAcherlor's in Computer Sciecne",46);
+    ff.print();
+    System.out.println("\n" );
+    
+  Technician t=new Technician(5,"Bilal Ahemd","328 Rehmanpura",32421343,"technician","212","Maintainance","DEPARTMENTAL TECHNICIAN","30,000",2,"tech_type" );
+  t.print();
+   
+  
+  }
+}
+
+
 
